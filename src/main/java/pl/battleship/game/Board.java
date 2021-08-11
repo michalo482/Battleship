@@ -59,5 +59,27 @@ public class Board {
         }
         System.out.println();
     }
+    public void printBoardwithShips(State[][] board, State water, State ship) {
+        int boardLength = board.length;
+        System.out.print("  ");
+        for (int i = 0; i < boardLength; i++){
+            System.out.print(i + 1 + " ");
+        }
+        System.out.println();
+        for (int row = 0; row < boardLength; row++) {
+            // PAMIETAJ dodac 1 do userInput!!!!!!!!!!!!
+            System.out.print(row + 1 + " ");
+            for (int col = 0; col < boardLength; col++) {
+                State position = board[row][col];
+                if (position == ship) {
+                    System.out.print(ship + " ");
+                } else {
+                    System.out.print(position + " ");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 
     }
