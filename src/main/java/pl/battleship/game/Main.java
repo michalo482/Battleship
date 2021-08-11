@@ -10,7 +10,7 @@ public class Main {
         State hit = State.HIT;
         State miss = State.MISS;
 
-        int length = 5;
+        int length = 4;
         int shipNumber = 4;
 
         Board gameBoard = new Board();
