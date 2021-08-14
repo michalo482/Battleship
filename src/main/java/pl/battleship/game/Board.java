@@ -1,85 +1,77 @@
 package pl.battleship.game;
 
-import java.util.Arrays;
-import java.util.Random;
-
 public class Board {
 
-    public Board() {
+    private int length;
+    Field[][] matrix;
+
+    public Board(int length) {
+        this.length = length;
+        fillBoard(length);
     }
 
-    public State[][] createBoard(int length, State water, State ship, int shipNumber) {
-        State[][] board = new State[length][length];
-         for (State[] row : board) {
-             Arrays.fill(row, water);
-         }
-         return placeShips(board, shipNumber, water, ship, length);
+    public int getLength() {
+        return length;
     }
 
-    public State[][] placeShips(State[][] board, int shipNumber, State water, State ship, int length) {
-        int shipsPlaced = 0;
-        while (shipsPlaced < shipNumber) {
-            int[] placeHolder = generateShipCoordinates(length);
-            State validField = board[placeHolder[0]][placeHolder[1]];
-            if (validField == water) {
-                board[placeHolder[0]][placeHolder[1]] = ship;
-                shipsPlaced++;
+    public Field getField(int x, int y) {
+        return matrix[x][y];
+    }
+
+    public Field[][] fillBoard(int length) {
+        matrix = new Field[length][length];
+        for (int row = 0; row < length; row++) {
+            for(int col = 0; col < length; col++) {
+                matrix[row][col] = new Field(row, col, State.WATER);
             }
         }
-        return board;
+        return matrix;
     }
 
-    public int[] generateShipCoordinates(int length) {
-        int[] coordinates = new int[2];
-        for (int i = 0; i < coordinates.length; i++) {
-            coordinates[i] = new Random().nextInt(length);
-        }
-        return coordinates;
-    }
+    public void placeShip(Field field, Ship ship) {
 
-    public void printBoard(State[][] board, State water, State ship) {
-        int boardLength = board.length;
-        System.out.print("  ");
-        for (int i = 0; i < boardLength; i++){
-            System.out.print(i + 1 + " ");
-        }
-        System.out.println();
-        for (int row = 0; row < boardLength; row++) {
-            // PAMIETAJ dodac 1 do userInput!!!!!!!!!!!!
-            System.out.print(row + 1 + " ");
-            for (int col = 0; col < boardLength; col++) {
-                State position = board[row][col];
-                if (position == ship) {
-                    System.out.print(water + " ");
-                } else {
-                    System.out.print(position + " ");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-    public void printBoardwithShips(State[][] board, State water, State ship) {
-        int boardLength = board.length;
-        System.out.print("  ");
-        for (int i = 0; i < boardLength; i++){
-            System.out.print(i + 1 + " ");
-        }
-        System.out.println();
-        for (int row = 0; row < boardLength; row++) {
-            // PAMIETAJ dodac 1 do userInput!!!!!!!!!!!!
-            System.out.print(row + 1 + " ");
-            for (int col = 0; col < boardLength; col++) {
-                State position = board[row][col];
-                if (position == ship) {
-                    System.out.print(ship + " ");
-                } else {
-                    System.out.print(position + " ");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
+        int x;
+        int y;
 
+        switch (ship.getShipType().size) {
+            case 1:
+                field.setFieldState(State.SHIP);
+                ship.addFieldToShip(field);
+                break;
+            case 2:
+                field.setFieldState(State.SHIP);
+                ship.addFieldToShip(field);
+                x = field.getX();
+                y = field.getY();
+                ship.addFieldToShip(new Field(x, y +1, State.SHIP));
+                break;
+            case 3:
+                field.setFieldState(State.SHIP);
+                ship.addFieldToShip(field);
+                x = field.getX();
+                y = field.getY();
+                ship.addFieldToShip(new Field(x, y +1, State.SHIP));
+                ship.addFieldToShip(new Field(x, y +2, State.SHIP));
+                break;
+            case 4:
+                field.setFieldState(State.SHIP);
+                ship.addFieldToShip(field);
+                x = field.getX();
+                y = field.getY();
+                ship.addFieldToShip(new Field(x, y +1, State.SHIP));
+                ship.addFieldToShip(new Field(x, y +2, State.SHIP));
+                ship.addFieldToShip(new Field(x, y +3, State.SHIP));
+                break;
+            case 5:
+                field.setFieldState(State.SHIP);
+                ship.addFieldToShip(field);
+                x = field.getX();
+                y = field.getY();
+                ship.addFieldToShip(new Field(x, y +1, State.SHIP));
+                ship.addFieldToShip(new Field(x, y +2, State.SHIP));
+                ship.addFieldToShip(new Field(x, y +3, State.SHIP));
+                ship.addFieldToShip(new Field(x, y +4, State.SHIP));
+                break;
+        }
     }
+}
