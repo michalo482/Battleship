@@ -11,15 +11,13 @@ public class GameLogic {
 
     public void logic() {
         Input board1 = new Input();
-        Input board2 = new Input();
         boards = board1.getBoards();
-        boards = board2.getBoards();
         Board boardPlayerOne = boards.get(0);
         Board boardPlayerTwo = boards.get(1);
         for (int i = 0; i < 1; i++) {
-            Ship one = board2.createShip(0);
+            Ship one = board1.createShip(0);
             while (!one.placementValid(one, fleetPlayerOne, boardPlayerOne)) {
-                one = board2.createShip(0);
+                one = board1.createShip(0);
             }
             fleetPlayerOne.add(one);
         }
