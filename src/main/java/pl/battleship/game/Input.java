@@ -31,9 +31,9 @@ public class Input {
     private List<Integer> askShipCoordsAndType() {
         this.shipTypeAndCoords = new ArrayList<>();
         System.out.println("Select row of start of a ship: ");
-        int row = scanner.nextInt();
+        int row = scanner.nextInt() - 1;
         System.out.println("Select col of start of a ship: ");
-        int col = scanner.nextInt();
+        int col = scanner.nextInt() - 1;
         System.out.println("Select ship type: ");
         int shipType = scanner.nextInt();
         shipTypeAndCoords.add(row);
