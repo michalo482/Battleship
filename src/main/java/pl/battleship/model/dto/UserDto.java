@@ -1,14 +1,16 @@
 package pl.battleship.model.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-public class UserDTO {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class UserDto {
 
     private String username;
     private String mail;
     private String password;
+    private String role;
 
 }

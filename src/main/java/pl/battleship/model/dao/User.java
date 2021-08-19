@@ -1,8 +1,6 @@
 package pl.battleship.model.dao;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,19 +8,20 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "user")
+@Builder
+@AllArgsConstructor
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private long id;
     @Column(name = "user_name", unique = true, nullable = false)
     private String username;
     @Column(name = "mail", unique = true, nullable = false)
     private String mail;
     @Column(name = "password", nullable = false)
     private String password;
+
+    private String role;
 
     public User(String username, String mail, String password) {
         this.username = username;

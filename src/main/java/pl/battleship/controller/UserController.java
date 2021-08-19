@@ -1,30 +1,28 @@
 package pl.battleship.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import pl.battleship.model.dao.User;
-import pl.battleship.model.dto.UserDTO;
+import pl.battleship.model.dto.UserDto;
 import pl.battleship.service.UserService;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public User createAccount(@RequestBody UserDTO userDTO){
-        User user = userService.createUser(userDTO);
-        return user;
+    @PostMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void createAccount(@RequestBody UserDto userDto){
+        userService.createUser(userDto);
     }
 
-    @RequestMapping(value = "/getuser", method = RequestMethod.GET)
-    public void getUser(){
-        userService.getUser();
-    }
+//    @RequestMapping(value = "/getuser", method = RequestMethod.GET)
+//    public void getUser(){
+//        userService.getUser();
+//    }
 
 }
