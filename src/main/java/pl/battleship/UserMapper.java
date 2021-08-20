@@ -1,7 +1,7 @@
 package pl.battleship;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Component;
 import pl.battleship.model.dao.User;
 import pl.battleship.model.dto.UserDto;
@@ -10,7 +10,7 @@ import pl.battleship.model.dto.UserDto;
 @Component
 public class UserMapper {
 
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
     public UserDto map(User user) {
         return UserDto.builder()
@@ -25,7 +25,7 @@ public class UserMapper {
                 .username(userDto.getUsername())
                 .mail(userDto.getMail())
                 .role(userDto.getRole())
-                .password(passwordEncoder.encode(userDto.getPassword()))
+                .password(userDto.getPassword())
                 .build();
     }
 }

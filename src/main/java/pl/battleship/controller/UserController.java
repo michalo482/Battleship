@@ -20,6 +20,11 @@ public class UserController {
         userService.createUser(userDto);
     }
 
+//    @RequestMapping(value = "/userslist", method = RequestMethod.GET)
+//    public void getPlayers() {
+//        userService.listUsers();
+//    }
+
 //    @RequestMapping(value = "/getuser", method = RequestMethod.GET)
 //    public void getUser(){
 //        userService.getUser();

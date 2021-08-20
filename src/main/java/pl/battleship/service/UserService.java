@@ -9,6 +9,9 @@ import pl.battleship.model.dao.User;
 import pl.battleship.model.dto.UserDto;
 import pl.battleship.repository.UserRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -17,19 +20,19 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserDto createUser(UserDto userDto){
+    public void createUser(UserDto userDto){
 
         if(userRepository.countAllByMailOrUsername(userDto.getMail(), userDto.getUsername()) > 0 ){
             throw new EntityAlreadyExistsException("Mail or username already taken");
-        }
+        } else {
 
-        User user = userMapper.map(userDto);
-        userRepository.save(user);
-        return userMapper.map(user);
+            User user = userMapper.map(userDto);
+            userRepository.save(user);
+        }
     }
 
-//    public User getUser(String username){
-//        userRepository.findById(username);
+//    public List<User> listUsers() {
+//        return (List<User>) userRepository.findAll();
 //    }
 
 
