@@ -7,6 +7,8 @@ import pl.battleship.model.dao.User;
 import pl.battleship.model.dto.UserDto;
 import pl.battleship.service.UserService;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/users")
@@ -20,14 +22,9 @@ public class UserController {
         userService.createUser(userDto);
     }
 
-//    @RequestMapping(value = "/userslist", method = RequestMethod.GET)
-//    public void getPlayers() {
-//        userService.listUsers();
-//    }
-
-//    @RequestMapping(value = "/getuser", method = RequestMethod.GET)
-//    public void getUser(){
-//        userService.getUser();
-//    }
+    @GetMapping()
+    public List<User> getUsers() {
+        return userService.getUsers();
+    }
 
 }
