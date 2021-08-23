@@ -14,6 +14,9 @@ import javax.persistence.*;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    private Long id;
     @Column(name = "user_name", unique = true, nullable = false)
     private String username;
     @Column(name = "mail", unique = true, nullable = false)

@@ -1,10 +1,11 @@
 package pl.battleship.model.dao;
 
+
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -18,27 +19,21 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "player_id")
     private Long id;
 
-    // local date
-    private Date join = new Date();
+    @CreationTimestamp
+    @Column(name = "joined_at")
+    private LocalDateTime join;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Game> game;
+    @ManyToMany
+    private Set<Game> games;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private Set<Ship> fleets = new HashSet<Ship>();
-
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private Set<Shot> shots = new HashSet<Shot>();
-
+    @Column(name = "winner")
     private Boolean winner = false;
-
-
-
 
 }
