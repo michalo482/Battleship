@@ -17,24 +17,24 @@ import java.util.Set;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    // local date
     private Date join = new Date();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "game_id")
-    private Game game;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Game> game;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Set<Ship> fleets = new HashSet<Ship>();
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private Set<Ship> fleets = new HashSet<Ship>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Set<Shot> shots = new HashSet<Shot>();
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private Set<Shot> shots = new HashSet<Shot>();
 
     private Boolean winner = false;
 

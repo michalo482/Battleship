@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,7 +30,7 @@ public class Score {
 
     private String result;
 
-    private int points;
+    private Integer points;
 
     private Date finishDate = new Date();
 

@@ -2,9 +2,10 @@ package pl.battleship.model.dao;
 
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,15 +23,19 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Date creationDate = new Date();
+    @CreationTimestamp
+    private LocalDateTime creationDate;
 
 
-    @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
+    @OneToOne
+    private GameState gameState;
+
+    @ManyToMany(mappedBy = "game", fetch = FetchType.EAGER)
     private Set<Player> players = new HashSet<>();
 
 
-    @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
-    private Set<Score> scores = new HashSet<>();
+//    @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
+//    private Set<Score> scores = new HashSet<>();
 
     private Boolean finished = false;
 

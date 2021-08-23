@@ -22,8 +22,8 @@ public class UserController {
         userService.createUser(userDto);
     }
 
-    @GetMapping("/userslist")
-    public List<User> getUsers() {
+    @GetMapping
+    public List<UserDto> getUsers() {
         return userService.getUsers();
     }
 

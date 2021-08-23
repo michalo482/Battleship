@@ -11,6 +11,7 @@ import pl.battleship.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Transactional
@@ -31,8 +32,10 @@ public class UserService {
         }
     }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getUsers() {
+        return userRepository.findAll().stream()
+                .map(userMapper::map)
+                .collect(Collectors.toUnmodifiableList());
     }
 
 }
