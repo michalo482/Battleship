@@ -22,7 +22,7 @@ public class UserController {
         userService.createUser(userDto);
     }
 
-    @GetMapping()
+    @GetMapping("/userslist")
     public List<User> getUsers() {
         return userService.getUsers();
     }
