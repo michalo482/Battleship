@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-//@Entity
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,6 +17,8 @@ public class GameState {
     @Id
     private Long id;
 
-//    @OneToOne
-//    private Game game;
+    @OneToOne
+    private Game game;
+
+    // PLANSZE, ZAINICJOWAC STAN, STWORZYĆ PUSTA PLANSZĘ, KTÓRY ETAP
 }

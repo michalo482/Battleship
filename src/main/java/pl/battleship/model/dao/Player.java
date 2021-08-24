@@ -29,7 +29,7 @@ public class Player {
     @ManyToMany
     private Set<Game> games;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 

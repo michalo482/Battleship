@@ -33,4 +33,6 @@ public class Game {
     @Column(name = "finished")
     private Boolean finished = false;
 
+
+
 }

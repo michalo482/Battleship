@@ -2,6 +2,7 @@ package pl.battleship.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.battleship.model.dao.User;
@@ -11,7 +12,7 @@ import pl.battleship.service.UserService;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController {
 
@@ -37,6 +38,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String getLoginPage(Model model) {
+        model.addAttribute("abc", true);
         model.addAttribute("loginRequest", new UserDto());
         return "login";
     }
