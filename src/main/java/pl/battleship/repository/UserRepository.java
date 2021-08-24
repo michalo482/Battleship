@@ -5,7 +5,7 @@ import pl.battleship.model.dao.User;
 
 import java.util.List;
 
-public interface UserRepository extends CrudRepository<User,String>{
+public interface UserRepository extends CrudRepository<User,Long>{
 
     int countAllByMailOrUsername(String mail, String username);
 
