@@ -19,8 +19,9 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void createAccount(@RequestBody UserDto userDto){
+    public UserDto createAccount(@RequestBody UserDto userDto){
         userService.createUser(userDto);
+        return userDto;
     }
 
     @GetMapping
@@ -29,13 +30,20 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegPage() {
+    public String getRegPage(Model model) {
+        model.addAttribute("registerRequest", new UserDto());
         return "register";
     }
+
     @GetMapping("/login")
-    public String getLoginPage() {
+    public String getLoginPage(Model model) {
+        model.addAttribute("loginRequest", new UserDto());
         return "login";
     }
 
-
+    @PostMapping("/register")
+    public String register(@ModelAttribute UserDto user) {
+        UserDto registeredUser = userService.createUser(user);
+        return registeredUser == null ? "error_page" : "redirect:/users/login";
+    }
 }

@@ -21,7 +21,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public void createUser(UserDto userDto){
+    public UserDto createUser(UserDto userDto){
 
         if(userRepository.countAllByMailOrUsername(userDto.getMail(), userDto.getUsername()) > 0 ){
             throw new EntityAlreadyExistsException("Mail or username already taken");
@@ -29,6 +29,7 @@ public class UserService {
 
             User user = userMapper.map(userDto);
             userRepository.save(user);
+            return userMapper.map(user);
         }
     }
 
