@@ -2,7 +2,10 @@ package pl.battleship.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import pl.battleship.model.dao.User;
 import pl.battleship.model.dto.UserDto;
@@ -11,7 +14,7 @@ import pl.battleship.service.UserService;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController {
 
@@ -36,7 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(Model model) {
+    public String getLoginPage(ModelMap model) {
         model.addAttribute("loginRequest", new UserDto());
         return "login";
     }
@@ -46,4 +49,12 @@ public class UserController {
         UserDto registeredUser = userService.createUser(user);
         return registeredUser == null ? "error_page" : "redirect:/users/login";
     }
+
+
+//    Game newGame = new Game();
+//    Player newPlayer = getLoggedPlayer(authentication);
+//    GamePlayer newGamePlayer = new GamePlayer(newGame, newPlayer);
+//            gameRepository.save(newGame);
+//            gamePlayerRepository.save(newGamePlayer);
+//            return new ResponseEntity<>(createMap("gpid", newGamePlayer.getId()), HttpStatus.CREATED);
 }

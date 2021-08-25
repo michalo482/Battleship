@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>LOGIN</title>
-    <link rel = "stylesheet" href="../static/css/style.css">
+    <link rel = "stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="form">
     <form>
         <h2>Login</h2>
+        <p th:if="${abc}">coś tam</p>
         <div class="input-box">
             <i class="fa fa-user" aria-hidden="true"></i>
             <input type="text" name="user_name" placeholder="Username" required>

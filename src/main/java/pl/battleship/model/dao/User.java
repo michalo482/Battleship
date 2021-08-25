@@ -3,6 +3,8 @@ package pl.battleship.model.dao;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -24,11 +26,20 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private Set<Player> players = new HashSet<>();
+
     private String role;
 
     public User(String username, String mail, String password) {
         this.username = username;
         this.mail = mail;
         this.password = password;
+    }
+
+    public void addPlayer(Player player) {
+        player.setUser(this);
+        players.add(player);
     }
 }
