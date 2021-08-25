@@ -2,6 +2,7 @@ package pl.battleship.model.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(exclude = "boardFields")
 public class Board {
 
     @Id
@@ -23,4 +25,6 @@ public class Board {
 
     @ManyToOne
     private Game game;
+
+    //
 }

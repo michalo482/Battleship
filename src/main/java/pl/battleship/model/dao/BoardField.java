@@ -22,4 +22,10 @@ public class BoardField {
 
     @ManyToOne
     private Board board;
+
+    private boolean isOccupied;
+
+
+
+
 }

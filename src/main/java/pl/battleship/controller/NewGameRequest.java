@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NewGameRequest {
 
-    private Long playerOneId;
-    private Long playerTwoId;
+    private Long userId;
+
 
 }
