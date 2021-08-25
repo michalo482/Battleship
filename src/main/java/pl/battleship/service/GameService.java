@@ -21,8 +21,8 @@ public class GameService {
         playerRepository.findById(newGameRequest.getPlayerOneId());
         playerRepository.findById(newGameRequest.getPlayerTwoId());
         Game game = new Game();
-        game.setPlayers();
-        game.setGameState();
+//        game.setPlayers();
+//        game.setGameState();
         return gameRepository.save(game);
     }
 }

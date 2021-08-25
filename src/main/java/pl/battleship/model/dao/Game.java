@@ -20,7 +20,6 @@ public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "game_id")
     private Long id;
 
     @CreationTimestamp
@@ -32,6 +31,10 @@ public class Game {
 
     @Column(name = "finished")
     private Boolean finished = false;
+
+    @OneToMany
+    @JoinColumn(name = "game_id")
+    private Set<Board> boards = new HashSet<>();
 
 
 

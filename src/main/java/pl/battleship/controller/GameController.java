@@ -12,6 +12,6 @@ public class GameController {
 
     @PostMapping
     public Game createNewGame(@RequestBody NewGameRequest newGameRequest) {
-
+    return null;
     }
 }

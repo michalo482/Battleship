@@ -19,7 +19,6 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "player_id")
     private Long id;
 
     @CreationTimestamp
@@ -29,7 +28,7 @@ public class Player {
     @ManyToMany
     private Set<Game> games;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
